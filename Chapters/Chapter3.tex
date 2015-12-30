@@ -1,0 +1,48 @@
+\chapter{Machine Learning Methods}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus at pulvinar nisi. Phasellus hendrerit, diam placerat interdum iaculis, mauris justo cursus risus, in viverra purus eros at ligula. Ut metus justo, consequat a tristique posuere, laoreet nec nibh. Etiam et scelerisque mauris. Phasellus vel massa magna. Ut non neque id tortor pharetra bibendum vitae sit amet nisi. Duis nec quam quam, sed euismod justo. Pellentesque eu tellus vitae ante tempus malesuada. Nunc accumsan, quam in congue consequat, lectus lectus dapibus erat, id aliquet urna neque at massa. Nulla facilisi. Morbi ullamcorper eleifend posuere. Donec libero leo, faucibus nec bibendum at, mattis et urna. Proin consectetur, nunc ut imperdiet lobortis, magna neque tincidunt lectus, id iaculis nisi justo id nibh. Pellentesque vel sem in erat vulputate faucibus molestie ut lorem.
+
+\section{Positive Unlabeled learning}
+
+\section {Support Vector Machines (SVM)}
+
+http://stats.stackexchange.com/questions/63028/one-class-svm-vs-exemplar-svm
+
+Support Vector Machines (SVM) (Cortes and Vapnik, 1995) is an state-of-the-art classification method with a solid theoretical background. It introduce a method to find a hyperplane that splits initial data in two classes. The main advantage of SVM is the ability to separate non linear data by casting data in a higher dimensional space where the data is separable.
+
+Examine a data set:
+ 
+\[ \{(x_1,y_2), (x_2,y_2), ...,(x_n,y_n) \} \; x_i \in \mathbf{R^d} \; y_i \in \{-1,1\} \]
+where \( x_i\) is the \( i-\)th input data point and \( y_i\)  a indicator vector for class membership.
+
+The hyperplane \(w\) separate the data with given function:
+
+\[y_i = sgn(wx_i + b) \] 
+where \(b\) is a bias and \(sgn\) classifies the result by adding a sign.
+
+Adding the parameter \(\xi\) allow some data to overlap the separation boundary and \(C > 0\) as the regularization parameter we got:
+
+\[ min_{w,b,\xi} \;\; \frac{1}{2}w^Tw+C \sum_{i=1}^{l} \xi_i\]
+\[ \textrm{subject to } y_i(w^T\phi(x_i) + b) \geq 1 - \xi_i, \]
+\[\xi_i \geq 0, i = 1,...,l \]
+
+where \( \phi(x_i) \textrm{ maps } x_i, \textrm{into a higher-dimensional space \cite{Chang:2011:LLS:1961189.1961199}.} \). In this thesis I will use SVM as classification algorithm to classify the credit application form data.
+
+\subsection{One Class SVM}
+
+
+% WE USE PROBABALY THE VERSION OF TAX AND DUIN
+%% LOOK AT THE LIBRARY DOCUMENTATION
+
+
+
+
+
+
+\section{Ensemble SVM}
+
+%http://www.outlier-analytics.org/odd13kdd/papers/slides_charu_aggarwal.p
+\section{Bayesian Networks (optional)}
+
+
+

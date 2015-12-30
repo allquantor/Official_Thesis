@@ -1,0 +1,70 @@
+\chapter{Experimental Protocol}
+
+
+\section{Experiment Setting (plan)}
+\section{Experimental Results}
+
+
+
+
+
+
+\begin{table}[h!]
+  \begin{center}
+    \caption{Variable description}
+    \label{tab:table1}
+    \begin{tabular}{l|l|l|l}
+    name & type & description & required field\\
+      \hline
+      purpose & string & description of the goal for the credit & No\\
+      \hline
+      gender & string & describes sex of the applicant  & Yes\\
+      \hline
+      maritalstatus & string & marital status of the applicant & Yes\\
+      \hline
+      children & number & children amount of the applicant & No\\
+      \hline
+      income & number & monthly income in the local currency & No\\ % large standard deviation, 
+      \hline
+       emailprovider & string & the domain of the email provider & Yes\\ % large spread of distribution, 4-5 outlier, 
+       \hline
+       jobtype & string & type of the state in the working world & Yes\\
+        \hline
+       degree & string & highest education degree & Yes\\
+       \hline
+       industry & string & the industry where the applicant is employed & Yes\\
+       \hline
+       hassocialnetworkaccount & binary & the applicant has a social network account & Yes\\ % maybe exist of some data depends on this (correlation)
+       \hline
+        screenresolution & string & screen resolution of the applicant & No\\
+        % there are some fail data can be unnecessary or also an indicator for anomaly
+          \hline
+        browsertype & string & type of device of applicant & Yes\\
+        % other can also be undetectable data
+        \hline
+        cookieenabled & 3-valued logic & describes if the cookies are enabled & Yes\\
+        \hline
+        flashenabled & 3-valued logic & describes applicant have flash enabled & Yes\\ % both can be other what also can be mean ed that we cant detect the fact
+        \hline
+        noplugins & number & amount browser plugins applicant has installed & Yes\\ % NA means in this case cant be detected because we have 0 entries so median here is OK.
+        \hline
+         nofonts & number & amount fonts applicant has installed & Yes\\ % NA means in this case cant be detected because we have 1 entries so median here is OK. \\ pretty high sd
+        \hline
+        duration & number & for how many days credit is taken & Yes\\ % sometimes lower than time2repay means probabaly prolongation
+        \hline
+        time2repay & number & days left to pay credit & Yes\\ % NA mean client dont need to repay
+        \hline
+        age & number & age of the applicant & Yes\\ % sometimes NA what does it mean? what does it mean if time2repay higher then duration
+        \hline
+        jobtenure & number & duration of employment in months & Yes\\ % duration of employment in months
+        \hline
+        status & number & current status of credit application & Yes\\ % one of factors which is not static
+        \hline
+         recdate & date & registration date of user & Yes\\ % not interesting for predictions
+        \hline
+    \end{tabular}
+  \end{center}
+\end{table}
+
+
+
