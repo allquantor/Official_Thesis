@@ -1,7 +1,7 @@
 
 \chapter{Introduction}
 
-The Concise Oxford Dictionary of Mathematics defines an anomaly as an unusual and possibly erroneous observation that does not follow the general pattern of a drawn population \cite{Clapham:2013:LAD}. Anomaly detection is a branch of data mining that seeks to find data points or patterns that do not fit the overall pattern of the data. Studying anomalous behavior has been applied in many branches of science. For example, an anomalous pattern in financial transaction data could be indicative of fraudulent activity or a an anomalous MRI image may indicate the presence of malignant tumors \cite{Spence:2001:DSC:882464.882797}. Anomaly detection's practicability relies heavily on the simple statistical assumption that rare observations may carry critical information \cite{Chandola:2009:ADS:1541880.1541882}. Detection of an anomaly can have a measurable positive effect and bring far reaching benefits. In the following work I will present anomaly detection using data mining methods on a data set containing credit application forms. The application forms have been submitted via a web interface and include mostly rudimentary personal- as well as financial-information. To collect more information about the credit applicant, the system also tracked technical metrics such as used web-browser and screen resolution. A detailed description of input data will be introduced in the second chapter of this thesis.
+The Concise Oxford Dictionary of Mathematics defines an anomaly as an unusual and possibly erroneous observation that does not follow the general pattern of a drawn population \cite{Clapham:2013}. Anomaly detection is a branch of data mining that seeks to find data points or patterns that do not fit the overall pattern of the data. Studying anomalous behavior has been applied in many branches of science. For example, an anomalous pattern in financial transaction data could be indicative of fraudulent activity or a an anomalous MRI image may indicate the presence of malignant tumors \cite{Spence:2001:DSC:882464.882797}. Anomaly detection's practicability relies heavily on the simple statistical assumption that rare observations may carry critical information \cite{Chandola:2009:ADS:1541880.1541882}. Detection of an anomaly can have a measurable positive effect and bring far reaching benefits. In the following work I will present anomaly detection using data mining methods on a data set containing credit application forms. The application forms have been submitted via a web interface and include mostly rudimentary personal- as well as financial-information. To collect more information about the credit applicant, the system also tracked technical metrics such as used web-browser and screen resolution. A detailed description of input data will be introduced in the second chapter of this thesis.
 
 
 \section{Types of Anomalies}
@@ -18,7 +18,7 @@ In the context of anomaly detection, anomalies are divided into three categories
 \end{itemize}
 
 \section{Challenges}
-Determining whether an observation is an anomaly or a normal observation is closely tied to the questions: what is the general pattern of the data and what is normal according to that pattern? Finding the general pattern of data is subject of active research in statistics, machine learning and artificial intelligence. Drawing a clear line between these fields is irrelevant as many practical methods are a composition rather than a disjunction. For the sake of simplicity I will use a machine learning centered approach to determine the general pattern of the given data. This involves creating and training a model with the given data. The data is already labeled as normal and anomalous. Taking this approach I will have to deal with the following challenges.
+Determining whether an observation is an anomaly or a normal observation is closely tied to the questions: what is the general pattern of the data and what is normal according to that pattern? Finding the general pattern of data is subject of active research in statistics, machine learning and artificial intelligence. Drawing a clear line between these fields is irrelevant as many practical methods are a composition rather than a disjunction. This Thesis will treat a machine learning centered approach. A straight forward approach to determine the general pattern of underlying data is creating and training a prediction model. Taking this approach I will have to deal with the following challenges.
 
 
 \begin{itemize}
@@ -28,12 +28,14 @@ Determining whether an observation is an anomaly or a normal observation is clos
     
     \item To establish the \textit{ground-truth} about anomalous data we need to be provided with sufficient data. Rarity makes result evaluation to a significant problem, in other words with non availability of labeled data, we do not have the base case to compare with \cite{Aggarwal:2013}. %seite 33
     
-    \item Distinguishing between noise and anomalies in data leads to a high false positive rate \cite{Chandola:2009:ADS:1541880.1541882}.  % noise in glossary, false positive in glossary
+    \item Distinguishing between noise and anomalies in data leads to a high false positive rate \cite{Chandola:2009:ADS:1541880.1541882}.   % noise in glossary, false positive in glossary
+    
 \end{itemize}
 
 \section{Machine Learning} 
 
-Deciding on the right machine learning technique to detect anomalies is highly dependant on the model purpose as well as available data. The best choice of a model requires a deep domain knowledge and analysis of available data \cite{Aggarwal:2013}. The relevant data for the described analysis is high dimensional data that contains a small set of positive labeled examples. This observation leads to the fact that we should only consider \textit{semi-supervised} and \textit{unsupervised} learning methods. Moreover we should consider that anomalies in financial data can be a result of malicious actions that were intented to look like normal data. This indicates that the data is noisy and the application we use should have a stable strategy to deal with noisy data. In this chapter I will give a brief introduction in  machine learning methods used for anomaly detection and tradeoff their beneficing for our use case. The methods we decide for will be discussed in detail in the third chapter of this work.
+Deciding on the right machine learning technique to detect anomalies is highly dependant on the model purpose as well as available data. The best choice of a model requires a deep domain knowledge and analysis of available data \cite{Aggarwal:2013}. The relevant data for the described analysis is high dimensional data that contains a small set of positive labeled examples. This observation leads to the fact that we should only consider \textit{semi-supervised} and \textit{unsupervised} learning methods. Moreover we should consider that anomalies in financial data can be a result of malicious actions that were intented to look like normal data. This indicates that the data is noisy and the application we use should have a stable strategy to deal with noisy data. 
+In this chapter I will give a brief introduction in  machine learning methods used for anomaly detection and tradeoff their beneficing for our use case. The methods we decide for will be discussed in detail in the third chapter of this work.
 
 \subsection{Extrema-value analysis}
 
@@ -43,7 +45,7 @@ Naturally designed for univariate data, extreme value analysis not suit for our 
 
 \subsection{Proximity-based methods}
 
-The major idea of proximity-based methods is to pool related data sets to groups or cluster based on available data. Data points that are not been allocated to any groups are mostly the outliers in data.
+The major idea of proximity-based methods is to pool related data sets to groups or cluster based on available data. Data points that are not been allocated to any groups are mostly the outliers.
 
 \textit{Density} based techniques like the nearest neighbour are vulnerable to noise in high dimensional data. Relative contrast between data points decrease with increasing dimensionality \cite{Hinneburg:2000:NNH:645926.671675}. Considering that our sample data is high dimensional this behavior can increase false-negative rate and is thus negligible. 
 
@@ -77,9 +79,49 @@ Evaluating the results of outlier detection algorithms and measuring their effec
 \section{Current State in Research}
 
 Anomaly detection has been wide reviewed topic by the statistical community. The classic literature from the perspective of statistics \cite{Hawkins:1980,Barnett:1978} was written before the wider adoption of database technology, and are therefore not written from a computational point of view \cite{Aggarwal:2013}.
-Increasing performance of data processing allowed studying the problem of Anomaly Detection more recently by the computer science community. Numerous scientific surveys \cite{Agyemang:2006:CSN:1609942.1609946,Chandola:2009:ADS:1541880.1541882,Chandola:2012:ADD:2197072.2197116,Pimentel:2014:RRN:2588908.2589196} discuss anomaly detection for particular domains from different points of view. Charu C. Aggrawal provide in his book \textit{Outlier Analysis} \cite{Aggarwal:2013} a comprehensive evaluation of outlier detection techniques from the data mining perspective.
+Increasing performance of data processing allowed studying the problem of Anomaly Detection more recently by the computer science community. Numerous scientific surveys \cite{Agyemang:2006:CSN:1609942.1609946,Chandola:2009:ADS:1541880.1541882,Chandola:2012:ADD:2197072.2197116,Pimentel:2014:RRN:2588908.2589196} discuss anomaly detection for particular domains from different points of view. Charu C. Aggrawal provide in his book \textit{Outlier Analysis} \cite{Aggarwal:2013} a comprehensive evaluation of outlier detection techniques from the data mining perspective. 
 
-An general consistent statement in anomaly detection surveys is that the algorithm to use is highly dependant on the domain specific use case and the available data \cite{Agyemang:2006:CSN:1609942.1609946,Chandola:2009:ADS:1541880.1541882,Chandola:2012:ADD:2197072.2197116,Pimentel:2014:RRN:2588908.2589196}. A table <table> illustrate previous works in topic of anomaly detection that will be helpful for further research in respect to our use case of outlier detection in financial data.
+An general consistent statement in anomaly detection surveys is that the algorithm to use is highly dependant on the domain specific use case and the available data \cite{Agyemang:2006:CSN:1609942.1609946,Chandola:2009:ADS:1541880.1541882,Chandola:2012:ADD:2197072.2197116,Pimentel:2014:RRN:2588908.2589196}. Table \ref{tab:recentwork} illustrate previous works in topic of anomaly detection that will be helpful for further research in respect to our use case of outlier detection in financial data.
+
+\begin{table}
+  \begin{center}
+    \caption{Recent work review}
+    \label{tab:recentwork}
+    \begin{tabular}{l|l}
+    Technique & References \\
+      \hline
+     SVM & \cite{Eskin:2010,Chandola:2009:ADS:1541880.1541882,Hinneburg:2000:NNH:645926.671675,Aggarwal:1999:FAP:304181.304188,Ahmed:2015,Claesen:2014} \\
+     \hline
+     Proximity Based & \cite{Chandola:2009:ADS:1541880.1541882,Hinneburg:2000:NNH:645926.671675,Aggarwal:1999:FAP:304181.304188,Ahmed:2015} \\
+     \hline
+     PU Learning & \cite{Li:2011, Claesen:2014} \\
+     \hline
+     Ensamble methods & \cite{Peddabachigari:2007, Bukhtoyarov:2014, Kavitha:2015, Claesen:2014} \\
+     \hline
+    \end{tabular}
+  \end{center}
+\end{table}
+
+The reviewed publications does not contain examples with case of anomaly detection in credit applicant data. However the topic of credit card fraud \cite{Eskin:2010,Chandola:2009:ADS:1541880.1541882,Hinneburg:2000:NNH:645926.671675,Aggarwal:1999:FAP:304181.304188,Ahmed:2015} and network intrusion \cite{Peddabachigari:2007,Kavitha:2015,Eskin:2010,Chandola:2009:ADS:1541880.1541882,Hinneburg:2000:NNH:645926.671675,Aggarwal:1999:FAP:304181.304188,Ahmed:2015} are well researched. The insights can be combined and used to develop an own outlier detection model.
+
+For the sake of content completeness table \ref{tab:recentworkbase} referring previous works in theoretical field of machine learning describing techniques i will use.
+
+\begin{table}[h!]
+  \begin{center}
+    \caption{Recent work review}
+    \label{tab:recentworkbase}
+    \begin{tabular}{l|r}
+    Technique & References \\
+      \hline
+     SVM & \cite{Tax:2004:SVD:960091.960109} \\
+     \hline
+     ROC & \cite{Fawcett:2006:IRA:1159473.1159475} \\
+     \hline
+     Ensembles & \cite{Nikunj:2009,Caruana:2004:ESL:1015330.1015432} \\
+     \hline
+    \end{tabular}
+  \end{center}
+\end{table}
 
 
 
