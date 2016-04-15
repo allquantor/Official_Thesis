@@ -9,8 +9,8 @@
 \usepackage[ngerman,english]{babel}
 %% see http://www.tex.ac.uk/cgi-bin/texfaq2html?label=uselmfonts
 \usepackage[T1]{fontenc}
-%\usepackage[utf8]{inputenc}
-\usepackage[latin1]{inputenc}
+\usepackage[utf8]{inputenc}
+%\usepackage[latin1]{inputenc}
 \usepackage{libertine}
 \usepackage{pifont}
 \usepackage{microtype}
@@ -25,6 +25,32 @@
 \usepackage{hawstyle}
 \usepackage{lipsum} %% for sample text
 \usepackage{epigraph} %% for quotes
+
+
+% custom
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+\usepackage{multicol}
+\usepackage{color}
+\usepackage{comment}
+
+
+
+
+% LATEX DRAW REQ PACKAGES
+
+ \usepackage[usenames,dvipsnames]{pstricks}
+ \usepackage{epsfig}
+ \usepackage{pst-grad} % For gradients
+ \usepackage{pst-plot} % For axes
+ \usepackage[space]{grffile} % For spaces in paths
+ \usepackage{etoolbox} % For spaces in paths
+ \makeatletter % For spaces in paths
+
+
+
+
+
 
 
 %% define some colors
@@ -84,7 +110,8 @@
 \makenomenclature
 
 \begin{document}
-\selectlanguage{ngerman}
+\selectlanguage{english}
+
 
 %%%%%
 %% customize (see readme.pdf for supported values)
