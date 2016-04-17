@@ -23,7 +23,7 @@ where \( x_i\) is the \( i-\)th input instance or data point and \( y_i\) is its
 
 A hyperplane that splits the data into two classes can be represented with the following equation:
 \[\vec{w}^Tx + b = 0, \] 
-where \(\vec{w}\) is a \textit{weight vector} determining the direction perpendicular to the hyperplane and \(b\) a \textit{bias} responsible for moving the hyperplane parallel to itself (see also~\ref{fig:hyperplane1}).
+where \(\vec{w}\) is a \textit{weight vector} determining the direction perpendicular to the hyperplane and \(b\) a \textit{bias} responsible for moving the hyperplane parallel to itself (see also\footnote{The picture is take from the work of~\cite{Okun;Valentini:2009}}~\ref{fig:hyperplane1}).
 
 \begin{figure}[h!]
     \centering % Picture from Oleg's book, do not forget the reffs!
@@ -32,7 +32,7 @@ where \(\vec{w}\) is a \textit{weight vector} determining the direction perpendi
     \label{fig:hyperplane1}
 \end{figure}
 
-However, classes in the input space are often not linearly separable, which means that a linear classifier is not a good option in such a case. In the case of SVMs a solution is to project the original data into another, often a higher dimensional space \(x \mapsto \phi(x) \), where classes would more likely be linearly separable. Figure~\ref{fig:hyperplane2} shows an example of input space \(X\) where data cannot be separated by a linear function. However after applying the mapping function \(\phi\) to each data point in \(X\), the data become well separable in a \textit{feature space} \(F = \{ \phi(x)\; | \; x \in X\}\).
+However, classes in the input space are often not linearly separable, which means that a linear classifier is not a good option in such a case. In the case of SVMs a solution is to project the original data into another, often a higher dimensional space \(x \mapsto \phi(x) \), where classes would more likely be linearly separable. Figure\footnote{The picture is take from the work of~\cite{Okun;Valentini:2009}}~\ref{fig:hyperplane2} shows an example of input space \(X\) where data cannot be separated by a linear function. However after applying the mapping function \(\phi\) to each data point in \(X\), the data become well separable in a \textit{feature space} \(F = \{ \phi(x)\; | \; x \in X\}\).
 \begin{figure}[h!]
     \centering
     \includegraphics[scale=0.6]{Graphics/svp-separation.png}
@@ -55,7 +55,7 @@ Kernels provide one pillar of SVMs. The other is the optimization theory as the 
 
 Below both primal and dual optimization problems are given. The maximal (or hard) margin problem assumes two classes are only linearly separable in the feature space. To remedy its deficiency, the soft margin problem is then presented that works with nonlinearly separable classes by introducing slack variables measuring non-separability (see below).
 
-The margin is a quantity indicating how well two classes of data are linearly separable. Figure~\ref{fig:hyperplane3} shows the maximal margin $\gamma$ for a set of 2D points. Thus, the margin is a half distance between two hyperplanes parallel the class-separating hyperplane when this separation is maximized.
+The margin is a quantity indicating how well two classes of data are linearly separable. Figure\footnote{The picture is take from the work of~\cite{Okun;Valentini:2009}}~\ref{fig:hyperplane3} shows the maximal margin $\gamma$ for a set of 2D points. Thus, the margin is a half distance between two hyperplanes parallel the class-separating hyperplane when this separation is maximized.
 \begin{figure}[h!]
     \centering
     \includegraphics[scale=0.6]{Graphics/svm-margins.png}

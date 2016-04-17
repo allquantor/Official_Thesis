@@ -83,8 +83,8 @@ The underlying dataset contains in total 1804 features for each loan application
   \begin{center}
     \caption{Feature type summary}
     \label{tab:feature-summary}
-    \begin{tabular}{c|c|c}
-    Type & No. of Features & Percentage of the Total \\
+    \begin{tabular}{|c|c|c|}\hline
+    \textit{Type} & \textit{No. of Features} & \textit{Amount} \\
       \hline
      Categorical & \(196\) & \(~11\%\) \\ 
      \hline
@@ -112,8 +112,8 @@ According to the semantic labeling in chapter \ref{Ch:2:Overview}, Table \ref{ta
   \begin{center}
     \caption{Instance Type Summary}
     \label{tab:instance-summary}
-    \begin{tabular}{c|c|c}
-    Label & No. of Cases & Percentage of the Total \\
+    \begin{tabular}{|c|c|c|}\hline
+    \textit{Label} & \textit{No. of Cases} & \textit{Percentage of the Total} \\
       \hline
      Fraud & \(744\) & \(~1\%\) \\ 
      \hline
@@ -139,14 +139,14 @@ This observation is important insofar as each category adds a further dimension 
 
 A cumulative analysis of variance (see Table~ \ref{tab:instance-summary}), showed up a low variance in the major part of the distribution. This is an essential information since low variance features can cause noise which can hurt classification accuracy. 
 
-Considering the summary of means (see Table~\ref{tab:instance-summary}) yield two observations: the high difference between the mean and the 3rd Quartile is an indicator for a skewed distribution (e.g high amount of extreme values), these are also a common cause of  misclassification. Moreover, the fact that the underlying  dataset contains negative numeric values leads to the assumption of possible errors occurred during the data acquisition process \footnote{The assumption was confirmed by consulting the responsible department. However, the details of this problem are out of the scope, thus, it is an engineering problem.}.
+Considering the summary of means (see Table~\ref{tab:summarized-analysis}) yield two observations: the high difference between the mean and the 3rd Quartile is an indicator for a skewed distribution (e.g high amount of extreme values), these are also a common cause of  misclassification. Moreover, the fact that the underlying  dataset contains negative numeric values leads to the assumption of possible errors occurred during the data acquisition process \footnote{The assumption was confirmed by consulting the responsible department. However, the details of this problem are out of the scope, thus, it is an engineering problem.}.
 
 \begin{table}[h!]
   \begin{center}
     \caption{A summarized analysis of the variance and the mean values in the given data set.}
-    \label{tab:instance-summary}
-    \begin{tabular}{c|c|c|c|c|c|c}
-    Method & Min & 1st Quartile & Median & Mean & 3rd Quartile & Max  \\
+    \label{tab:summarized-analysis}
+    \hspace*{-2cm}\begin{tabular}{|c|c|c|c|c|c|c|}  \hline
+    \textit{Method} & \textit{Min} & \textit{1st Quartile} & \textit{Median} & \textit{Mean} & \textit{3rd Quartile} & \textit{Max}  \\
       \hline
     \textbf{Variance} & \(0\) & \(0\) & \(0\) & \(3.544.237.278.460.000\) & \(25\) & \(5.022.619.867.920.000.000\) \\
      \hline
@@ -183,15 +183,15 @@ An often used mathematical tool to demonstrate relationships between features is
 
 \subsection{Data Quality (Missing Values)}\label{Ch:2:DataQuality}
 \epigraph{The only really good solution to the missing data problem is not to have any. Statistical adjustments can never make up for sloppy research. }{Paul D. Allison, 2001}
-\label{intro}
+
 
 Lack of information or missing data in a given dataset is a common obstacle in field statistics and data mining. Below analysis is done in order to identify the amount of missing data. Table~\ref{tab:missings-over-all} presents a statistical summary of missing values in our source data.
- \begin{table}[h!]
+ \begin{table}[ht!]
   \begin{center}
     \caption{Summary of missing values in the entire data.}
     \label{tab:missings-over-all}
-    \begin{tabular}{c|c|c|c|c|c}
-    Min & 1st Quartile & Max & Median & Mean & 3rd Quartile \\
+    \begin{tabular}{|c|c|c|c|c|c|}\hline
+    \textit{Min} & \textit{1st Quartile} & \textit{Max} & \textit{Median} & \textit{Mean} & \textit{3rd Quartile} \\
       \hline
      0\% & 8\% & 99\% & 31\% & 43\% & 77\% \\ 
      \hline 
@@ -217,8 +217,8 @@ Below the missing value analysis is broken down into the summaries grouped by fe
   \begin{center}
     \caption{Summary of missing values over logical data.}
     \label{tab:missings-over-logical}
-    \begin{tabular}{c|c|c|c|c|c}
-    Min & 1st Quartile & Max & Median & Mean & 3rd Quartile \\
+    \begin{tabular}{|c|c|c|c|c|c|}\hline
+    \textit{Min} & \textit{1st Quartile}& \textit{Max} & \textit{Median} & \textit{Mean} & \textit{3rd Quartile} \\
       \hline
      5\% & 9\% & 99\% & 31\% & 43\% & 76\% \\ 
      \hline 
@@ -230,8 +230,8 @@ Below the missing value analysis is broken down into the summaries grouped by fe
   \begin{center}
     \caption{Summary of missing values over numeric data.}
     \label{tab:missings-over-numeric}
-    \begin{tabular}{c|c|c|c|c|c}
-    Min & 1st Quartile & Max & Median & Mean & 3rd Quartile \\
+    \begin{tabular}{|c|c|c|c|c|c|}\hline
+     \textit{Min} & \textit{1st Quartile}& \textit{Max} & \textit{Median} & \textit{Mean} & \textit{3rd Quartile} \\
       \hline
      0\% & 8\% & 99\% & 30\% & 41\% & 76\% \\ 
      \hline 
@@ -244,8 +244,8 @@ Below the missing value analysis is broken down into the summaries grouped by fe
   \begin{center}
     \caption{Summary of missing values over categorical data.}
     \label{tab:missings-over-categorical}
-    \begin{tabular}{c|c|c|c|c|c}
-    Min & 1st Quartile & Max & Median & Mean & 3rd Quartile \\
+    \begin{tabular}{|c|c|c|c|c|c|}\hline
+      \textit{Min} & \textit{1st Quartile}& \textit{Max} & \textit{Median} & \textit{Mean} & \textit{3rd Quartile} \\
       \hline
      0\% & 24\% & 99\% & 59\% & 58\% & 90\% \\ 
      \hline 
@@ -324,8 +324,8 @@ For the sake of simplicity we consider a subset with only four instances as give
   \begin{center}
     \caption{Example of a categorical feature and its levels.}
     \label{tab:feature-categorical-rep}
-    \begin{tabular}{c|c}
-    instance & action \\
+    \begin{tabular}{|c|c|}\hline
+    \textit{Instance} & \textit{Action} \\
       \hline
      A & Other \\ 
      \hline 
@@ -348,8 +348,8 @@ Using binary dummy variables results in three additional features with a numeric
   \begin{center}
     \caption{Result of the categorical-to-numeric transformation for the example in Table~\ref{tab:feature-categorical-rep}.}
     \label{tab:feature-binarization}
-    \begin{tabular}{c|c|c|c|}
-    instance & action.ButtonClick & action.MouseClick & action.Other \\
+    \begin{tabular}{|c|c|c|c|}\hline
+    \textit{Instance} & \textit{Action.ButtonClick} & \textit{Action.MouseClick} & \textit{Action.Other} \\
       \hline
      A & 0 & 0 & 1 \\ 
      \hline 
@@ -385,7 +385,7 @@ This thesis will stick on different approaches for missing value imputation:
 \subsection{Removing corrupted examples (acquisition error)}\label{Ch:2:RCD}
 Since the process of data acquisition become more and more complex the chance to find a subset of flawed data points in the underlying dataset increase. Examples for corrupted data can be type errors (e.g a categorical value in a numeric field), extreme values (e.g a negative value in the field for monthly income) or missing values (separately discussed in Chapter ~\ref{Ch:2:DataQuality}). The causes are initially wrong input by user, erroneous type conversions or data transmission dropouts to name a few. 
 
-A summary of the mean value (see Chapter ~ \ref{Ch:2:SSummary}) showed up the fact of existing negative numerical values in behavior data. However, behavior information can not be positive by definition\footnote{Behavior data considered in this Thesis can only have values >= 0, by definition.}.
+A summary of the mean value (see Chapter~\ref{Ch:2:SSummary}) showed up the fact of existing negative numerical values in behavior data. However, behavior information can not be positive by definition\footnote{Behavior data considered in this Thesis can only have values >= 0, by definition.}.
 Correcting such flawed entries efforts a detailed root-cause analysis. However, this is an engineering-heavy task and would go beyond the scope of this thesis. So the treatment in this Thesis will be to identify such kind of corruptions and exclude them from the dataset 
 
 

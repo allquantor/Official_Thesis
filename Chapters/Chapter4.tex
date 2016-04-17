@@ -9,24 +9,6 @@ This chapter describe the measurement technique which will be used in chapter \r
 
 ROC Analysis is a technique to measure and visualize the performance of an classifier through calculating the tradeoff between hit rates and false alarms \cite{Fawcett:2006:IRA:1159473.1159475}. Results of binary classifier like SVM can be easily utilized by the ROC Analysis for performance evaluation e.g measuring classification accuracy.
 
-
-\begin{table}[ht!]
-    \begin{center}
-    \caption{Confusion Matrix}
-    \label{tab:conf-matrix}
-        \begin{tabular}{|c|c|c|}
-        \hline
-        &POSITIVES&NEGATIVES\\
-        \hline
-        POSITIVES&100 & 200 \\
-        \hline
-        NEGATIVES&100 & 200 \\
-        \hline
-        \end{tabular}
-\end{center}
-\end{table}
-
-
 Bellow the measurement metrics in the context of ROC Analysis are given. Then, the ROC Graph, as a tool for the visualization of discrete and probabilistic classifier performance is described. Followed by the precision - recall curve. As last, a summary is given.
 
 There are four categories of a classification result over a particular example:
@@ -37,6 +19,16 @@ There are four categories of a classification result over a particular example:
     \item \textbf{True Negative (TN):}  If an instance is negative and it was counted as negative.
     \item \textbf{False Negative (FN):}  If an instance is positive and it was predicted as negative.
 \end{itemize}
+
+For the sake to visually present the classification results it is a common practice to construct a \textit{confusion matrix} (see Figure~\ref{fig:confusion-matrix}). There,  classification results are compared with ground truth information. Along the main diagonal correct decisions are given where the errors (confusion) are represented by the antidiagonal of the table.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[scale=0.33]{Graphics/confusion-matrix.png}
+    \caption{Confusion Matrix}
+    \label{fig:confusion-matrix}
+\end{figure}
+
 
 Based on the above given categories, measurement metrics can be calculated. Some of them are given bellow:
 
