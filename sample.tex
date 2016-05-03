@@ -33,6 +33,9 @@
 \usepackage{multicol}
 \usepackage{color}
 \usepackage{comment}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+
 
 
 
@@ -136,16 +139,65 @@
 %% add abstract pages
 %% note: this is one command on multiple lines
 \HAWAbstractPage
-%% German abstract
-{Maschinelles Lernen, Betrugserkennung, Finanzdaten, Datenverarbeitung, Support Vector Machine, CRISP-DM}%
-{Dieses Dokument \ldots}
-%% English abstract
-{Machine Learning, Fraud Detection, Financial Data, Big Data, Support Vector Machine, CRISP-DM, One Class SVM}%
+{
+    Maschinelles Lernen, 
+    Betrugserkennung, 
+    Finanzdaten, 
+    Datenverarbeitung, 
+    Support Vector Machine, 
+    CRISP-DM, 
+    Hauptkomponentenanalyse, 
+    Ensemblemethoden, 
+    Verhaltensdaten
+}
+{ 
+    ICH BIN DEUTSCHER ABSTRACT
+}
+{
+    Machine Learning, 
+    Fraud Detection, 
+    Financial Data, 
+    Big Data, 
+    Support Vector Machine, 
+    CRISP-DM, 
+    One Class Support Vector Machine, 
+    Principal Component Analysis, 
+    Ensemble Methods, Behavior Data, 
+    Positive and Unlabeled Learning
+    
+}
+{ 
+      The instant online issuing of micro-loans is a modern credit lending business solution. It is based on a machine learning algorithm that automatically scores loan applications.
+      It is not uncommon that some malicious persons try to bypass the system and get a loan. 
+      This thesis aims to utilize advanced machine learning methods to predict possible fraud on data collected during the credit-application process. 
 
-{This document \ldots}
+      Fraudulent/anomalous cases are by definition rare, thus, the machine learning methods discussed in this thesis are based on discriminating fraudsters by using only positive (good customers that repay loans) and unlabeled (customers with a still unknown repayment status) data. 
+
+      A brief analysis of the underlying data is performed and several characteristics and issues like the high amount of missing values are discussed.
+
+      Three machine learning algorithms able to learn only from positive and unlabeled data are introduced. The one-class Support Vector Machine (SVM) uses only positive instances in contrast to Positive and Unlabeled Learning (PUL) and PUL Ensemble, where both - positive and unlabeled data are used. 
+
+      An experiment that utilizes the preprocessing operations and the machine learning algorithms showed that a one-class SVM can deliver a promising fraud detection rate but at the expense of a large number of trustworthy applicants being misclassified; PUL significantly decreases the false negative rate but failed to detect more fraud cases, whereas a PUL ensemble achieves a zero false negative rate while driving the fraud detection rate to about \(73\%\). In addition, a positive effect of the preprocessing pipeline and a negative impact of Principal Component Analysis is discovered. Finally, a business value of deploying a PUL ensemble as a part of credit scoring system is calculated for a given test set.
+
+      The thesis came to the conclusion that a successful fraud detection is possible even when fraud cases are rare or unavailable.
+}
 
 \newpage
 \singlespacing
+\section*{Acknowledgement}
+At this point I would like to acknowledge all the people who supported and assisted me through the work on this thesis.
+
+First, I would like to thank my advisors Prof. Dr. Kai von Luck and Prof. Dr. Klaus-Peter Schoeneberg at HAW-Hamburg. Prof. von Luck was always available to answer any questions I had and has played an important part in keeping me motivated. I am also very thankful for all the valuable comments and recommendations provided by Prof. Schoeneberg. The expertise of Prof. von Luck and Prof. Schoeneberg has left a huge impact on me and on my work. 
+
+I also want to express my deepest gratitude to Dr. Oleg Okun who was one of my advisors at Kreditech. His patience, support and valuable advice have helped me move in the right direction. His ability to explain complex things in a simple way is unique and made my work a lot easier.
+
+Additional gratitude goes to Dr. Liuben Siarov who was also an advisor to me at Kreditech. He guided me in my research, helped me structure my work and motivated me to approach advanced topics.
+
+Further acknowledgement and thanks are due to Alexander Graubner-Müller, CEO at Kreditech, who was the one who suggested the idea of anomaly detection and created the environment to work on it in his company.
+
+Finally, I want to thank all my colleagues at Kreditech for their support. They have made the writing of this thesis in a real-world company as convenient as possible by answering all my questions and providing me with information and tools necessary to complete my work.
+
+
 
 \tableofcontents
 \newpage
@@ -201,5 +253,7 @@
 \printindex
 
 \HAWasurency
+
+
 
 \end{document}

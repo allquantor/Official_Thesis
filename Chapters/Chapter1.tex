@@ -13,7 +13,8 @@ A micro-credit is usually a small to medium sized loan issued to a private perso
 
 It is not uncommon that malicious people known as fraudsters attempt to cheat a scoring algorithm so as to look as legitimate and trustworthy applicants. Once such a fraudster got a loan, a  micro-crediting company loses money. As the by-product of missed fraud attempt, a bad debt is accumulated too, which handicaps the ability of such a company to issue loans to legitimate applicants in the future. Because a loan decision is automatic and it has to be fast (made in a few dozen minutes), reliable fraud detection is of paramount importance for lending businesses. 
 
-The fraud is not the only anomaly in this area. For instance, a borrower that repeatedly gets and fully repays large loans is a rarity, but it is a positive rarity that clearly stands out of the entire cohort of applicants. Such applicants likely demand special attention in order to keep them satisfied with the service and loan conditions.
+%!!!!!!!Removed it cause this point was never touched in the following!!!!!!
+%The fraud is not the only anomaly in this area. For instance, a borrower that repeatedly gets and fully repays large loans is a rarity, but it is a positive rarity that clearly stands out of the entire cohort of applicants. Such applicants likely demand special attention in order to keep them satisfied with the service and loan conditions.
 
 In this chapter, the taxonomy of anomalies will first be introduced, followed by a list of challenges and problems encountered in anomaly detection. After that, typical approaches to anomaly detection are briefly sketched together with examples from the literature. Finally, the goal and the structure of the thesis are outlined.
 
@@ -46,13 +47,13 @@ The following challenges are common:
 \section{Statistical and Machine Learning Approaches to Anomaly Detection}\label{approaches2problem}
 According to to~\cite{Aggarwal:2013}, there are the following approaches to anomaly detection that rely on either statistical or machine learning algorithms.
 
-\subsection{Extreme-value analysis}\label{extremevalue}
+\subsection{Extreme-Value Analysis}\label{extremevalue}
 This approach is based on the extreme value theory \cite{Castillo:2004}. It is a distribution based and is typically applied to 1-dimensional data by looking at the tails of a data distribution. This limits its usefulness to the point anomaly detection.
 
-\subsection{Proximity-based approach}\label{proximity}
+\subsection{Proximity-Based Approach}\label{proximity}
 The major idea of the proximity-based approach is to pool related data sets to groups or cluster based on available data. Data points that are not been allocated to any groups are likely the outliers. There are two main subgroups in this approach: density-based and clustering approaches. Regardless of this division, the main operation is distance computation between pairs of observations. For high-dimensional data, however, distances tend to become almost identical, thus making outlier detection hard ~\cite{Aggarwal:2013}. 
 
-\subsection{Classification approach}\label{classification}
+\subsection{Classification Approach}\label{classification}
 Anomaly detection can be modeled as a two- or one-class classification (supervised learning) problem. 
 
 In the former case, two classes of data are assumed to be available: normal and abnormal. To mitigate class imbalance caused by very few representatives of an anomaly, the cost-sensitive learning is applied that assigns different misclassification costs to different classes (cost of misclassifying an anomalous observation is set to be much higher than that of misclassifying a normal observation) \cite{Elkan:2001:FCL:1642194.1642224}.
@@ -82,5 +83,6 @@ This work will stick on classification \ref{classification} approach by using Tw
 
 
 \section{Thesis Goal and Structure}\label{goalandstructure}
-The goal in this work is to evaluate several machine learning algorithms for anomaly detection in the real world business use case. \\% The complete goal will be defined as last.
-This thesis is structured as follows: Chapter \ref{ch:2} treat the data discovery and preprocessing instructed by the CRISP-DM process. The theoretical overview and discussion of Machine-learning algorithms used in this thesis are provided in chapter \ref{ch:3}. The following chapter \ref{Chapter:4} explain a technique to measure the results of applying Machine-learning methods on data. Chapter \ref{Chapter:5} describe the practical work done with given data. The results of experiments made are discussed in the \ref{Chapter:6}-th chapter. As the last, the chapter \ref{Chapter:7} contain a summary of the work that has been done and will end with an overview of perspectives for the future research in anomaly detection topic. 
+The key goal of this work is to find anomalies in credit applicant data which can be indicative of fraud cases. In many practical situations, examples of fraud are either unavailable or very few in number. Therefore, several known and new machine learning approaches that are based on learning from data when fraud examples are unavailable will be used and their performance will be evaluated in order to investigate challenges and obstacles in financial data anomaly detection.
+
+This thesis is structured as follows: After analyzing the state-of-the-art in anomaly detection in this chapter, Chapter~\ref{ch:2} presents the data discovery as specified by the standard CRISP-DM process, data pre-processing tasks relevant to credit data, and characteristics of the data used in this thesis. The theoretical overview and discussion of machine learning algorithms used in this thesis are provided in Chapter~\ref{ch:3}. Chapter~\ref{Chapter:4} deals with performance evaluation of predictive models. Experiments done are presented in Chapter~\ref{Chapter:5}. The business value of the findings is discussed in Chapter \ref{Chapter:6}. Finally, Chapter~\ref{Chapter:7} concludes with a summary of the entire work and an overview of perspectives for the future research. 

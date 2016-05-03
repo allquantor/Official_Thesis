@@ -12,10 +12,10 @@ The purpose of the following introduction is:
 One last note before starting: the theoretical concepts will be presented in an aggregated form. The goal is to provide only the information necessary to follow up in the further chapter. 
 
 
-\section[Support Vector Machines (SVM)] {Support Vector Machines (SVM) \footnote{The following chapter is based on the chapter 8 of the book \textit{Applications of Supervised and Unsupervised Ensemble Methods} by \cite{Okun;Valentini:2009}, and provide a brief summary of SVM important for further work in this Thesis. } }\label{Chapter:SVM}
+\section[Support Vector Machines (SVM)] {Support Vector Machines (SVM) \footnote{The following chapter is based on the chapter 8 of the book~\cite{Okun;Valentini:2009}, and provides a brief summary of SVM important for further work in this thesis. } }\label{Chapter:SVM}
 
 %http://stats.stackexchange.com/questions/63028/one-class-svm-vs-exemplar-svm
-Support Vector Machines (SVM) \cite{Cortes;Vapnik:1995} is a state-of-the-art method with a solid background in statistical learning theory. It can be used for both classification and regression tasks. What distinguishes an SVM from other methods is a better ability to deal with high dimensional data and the guarantee of the globally optimal solution. The solution an SVM produces is sparse in many cases as only a fraction of training set instances is relevant for the task at hand. These instances, called support vectors, lie close to a hyperplane separating data into classes. Thus, an SVM tries to transform nonlinearly separable classes into linearly separable ones because the latter case is simpler to solve than the former. Without loss of generality and for the purpose of this thesis, only one or two classes are assumed to be present in the data.
+Support Vector Machines (SVM) \cite{Cortes;Vapnik:1995} is a well proven method with a solid background in statistical learning theory. It can be used for both classification and regression tasks. What distinguishes an SVM from other methods is a better ability to deal with high dimensional data and the guarantee of the globally optimal solution. The solution an SVM produces is sparse in many cases as only a fraction of training set instances is relevant for the task at hand. These instances, called support vectors, lie close to a hyperplane separating data into classes. Thus, an SVM tries to transform nonlinearly separable classes into linearly separable ones because the latter case is simpler to solve than the former. Without loss of generality and for the purpose of this thesis, only one or two classes are assumed to be present in the data.
 
 Let us assume that we are given a data set as
 \[  S = \{(x_1,y_2), (x_2,y_2), ...,(x_n,y_n) \} \; x_i \in \mathbf{R^d} \; y_i \in \{-1,1\}, \]
@@ -23,20 +23,20 @@ where \( x_i\) is the \( i-\)th input instance or data point and \( y_i\) is its
 
 A hyperplane that splits the data into two classes can be represented with the following equation:
 \[\vec{w}^Tx + b = 0, \] 
-where \(\vec{w}\) is a \textit{weight vector} determining the direction perpendicular to the hyperplane and \(b\) a \textit{bias} responsible for moving the hyperplane parallel to itself (see also\footnote{The picture is take from the work of~\cite{Okun;Valentini:2009}}~\ref{fig:hyperplane1}).
+where \(\vec{w}\) is a \textit{weight vector} determining the direction perpendicular to the hyperplane and \(b\) a \textit{bias} responsible for moving the hyperplane parallel to itself (see also\footnote{The figure is taken from the work of~\cite{Okun;Valentini:2009}}~\ref{fig:hyperplane1}).
 
 \begin{figure}[h!]
     \centering % Picture from Oleg's book, do not forget the reffs!
     \includegraphics[scale=0.6]{Graphics/svm1.png}
-    \caption{Hyperplane for separating 2-dimensional data.}
+    \caption{A hyperplane for separating 2-dimensional data.}
     \label{fig:hyperplane1}
 \end{figure}
 
-However, classes in the input space are often not linearly separable, which means that a linear classifier is not a good option in such a case. In the case of SVMs a solution is to project the original data into another, often a higher dimensional space \(x \mapsto \phi(x) \), where classes would more likely be linearly separable. Figure\footnote{The picture is take from the work of~\cite{Okun;Valentini:2009}}~\ref{fig:hyperplane2} shows an example of input space \(X\) where data cannot be separated by a linear function. However after applying the mapping function \(\phi\) to each data point in \(X\), the data become well separable in a \textit{feature space} \(F = \{ \phi(x)\; | \; x \in X\}\).
+However, classes in the input space are often not linearly separable, which means that a linear classifier is not a good option in such a case. In the case of SVMs a solution is to project the original data into another, often a higher dimensional space \(x \mapsto \phi(x) \), where classes would more likely be linearly separable. Figure\footnote{The figure is taken from the work of~\cite{Okun;Valentini:2009}}~\ref{fig:hyperplane2} shows an example of input space \(X\) where data cannot be separated by a linear function. However after applying the mapping function \(\phi\) to each data point in \(X\), the data become well separable in a \textit{feature space} \(F = \{ \phi(x)\; | \; x \in X\}\).
 \begin{figure}[h!]
     \centering
     \includegraphics[scale=0.6]{Graphics/svp-separation.png}
-    \caption{Mapping data into feature space.}
+    \caption{A visualization of mapping data into a feature space.}
     \label{fig:hyperplane2}
 \end{figure}
 
@@ -55,7 +55,7 @@ Kernels provide one pillar of SVMs. The other is the optimization theory as the 
 
 Below both primal and dual optimization problems are given. The maximal (or hard) margin problem assumes two classes are only linearly separable in the feature space. To remedy its deficiency, the soft margin problem is then presented that works with nonlinearly separable classes by introducing slack variables measuring non-separability (see below).
 
-The margin is a quantity indicating how well two classes of data are linearly separable. Figure\footnote{The picture is take from the work of~\cite{Okun;Valentini:2009}}~\ref{fig:hyperplane3} shows the maximal margin $\gamma$ for a set of 2D points. Thus, the margin is a half distance between two hyperplanes parallel the class-separating hyperplane when this separation is maximized.
+The margin is a quantity indicating how well two classes of data are linearly separable. Figure\footnote{The figure is taken from the work of~\cite{Okun;Valentini:2009}}~\ref{fig:hyperplane3} shows the maximal margin $\gamma$ for a set of 2D points. Thus, the margin is a half distance between two hyperplanes parallel the class-separating hyperplane when this separation is maximized.
 \begin{figure}[h!]
     \centering
     \includegraphics[scale=0.6]{Graphics/svm-margins.png}
@@ -90,12 +90,12 @@ The margin is a quantity indicating how well two classes of data are linearly se
 \textit{One Class SVM} is an SVM-based classifier method proposed for cases when only one class of data is available to a modeler. Another important distinction from the conventional SVM is that instead of the separating hyperplane a hypersphere with minimal volume (or
 minimal radius) containing all objects is sought \cite{Tax:2004:SVD:960091.960109}. 
 
-As can be seen in the figure: \ref{fig:hypersphere} \footnote{The picture is taken from the work of  \cite{s120810109}}, everything inside the sphere describes instances of a given class where outside lie outliers. 
+As can be seen in the figure: \ref{fig:hypersphere} \footnote{The figure is takenn from the work of  \cite{s120810109}}, everything inside the sphere describes instances of a given class where outside lie outliers. 
 
 \begin{figure}[h!]
     \centering
     \includegraphics[scale=0.2]{Graphics/tax-duin-svm.png}
-    \caption{One class classification with Support Vector Data Description by \cite{Tax:2004:SVD:960091.960109}.}
+    \caption{A visualization of the classification with one-class SVM.}
     \label{fig:hypersphere}
 \end{figure}
 
@@ -133,30 +133,30 @@ There the data is first divided into training, validation, and test sets. Then a
 
 In other works on PUL, experimental results showed that this approach significantly reduces the effort of labeling the data, while yielding competitive results, compared to the case when both positive and negative labels must be known before learning (see \cite{Li:2011}).
 
-\section{Ensemble SVM}\label{Chapter:Ensemble}
-\textit{Ensamble SVM} is an approach to combine multiple SVM Algorithms. The general idea of sequential ensembles is to provide a better understanding of the data, so as to enable a more refined execution with either a modified algorithm or data set \cite{Aggarwal:2013} by applying the same or several classification algorithms on the same data and evaluating the results. Alternatively, independent ensembles use different initialisations of same algorithm or different subsets of underlying data. The results can be combined to obtain a more robust outlier score \cite{Aggarwal:2013}. 
+\section{PUL Ensemble}\label{Chapter:Ensemble}
+\textit{PUL Ensemble} is an approach to combine multiple PUL algorithms in order to improve classification performance and outperform a single PUL algorithm. One of the common techniques to create an ensemble is to associate a separate training set with each ensemble member. In this thesis we selected the Robust Ensemble of Support Vector Machines algorithm \cite{Claesen:2014} in order to implement the ensemble.
 
-This Thesis will stick on the Robust Ensemble of Support Vector Machine algorithm \cite{Claesen:2014} which can be defined as an independent ensemble.
+The problem of PU learning can be considered as a supervised task with label noise in the negative set \cite{Claesen:2014}. However, the assumption that only the negative set can contain label noise can be violated due to various reasons \cite{journals/tnn/FrenayV14}. For example, our assumption that borrowers which have already paid at least one installment back are believed not having fraudulent intentions (see Chapter ~\ref{Ch:2:Overview}) could be violated when some borrowers are paying a small amount of money back in order to hide their fraudulent intentions - that would mean those positive examples \(P\) can contain label noise.
 
-The problem of PU learning can be considered as a supervised task with label noise in the negative set \cite{Claesen:2014}. However, the assumption that only the negative set can contain label noise can be violated due to various reasons \cite{journals/tnn/FrenayV14}. For example, our assumption that borrowers which have already paid at least one installment back are believed to not have fraudulent intentions (see Chapter ~\ref{Ch:2:Overview}), could be violated by making the assumption that some borrowers are paying a small installment back to hide their fraudulent intentions - that would mean those positive examples \(P\) can contain label noise.
+Robust Ensemble of Support Vector Machines (RESVM) is an ensemble algorithm with the goal to improve classification performance of PU Learning tasks where label noise is assumed to be present in both positive and negative sets of instances \cite{Claesen:2014}. The RESVM is based on following two methods that already treat the problem of label noise in \(U\):
 
-Robust Ensemble of Support Vector Machines (RESVM) is an ensemble algorithm with the goal to improve classification accuracy of PU Learning based tasks with an approach to treating label noise problem in the set of positive examples \cite{Claesen:2014}. The RESVM approach is based on two techniques that already treat the problem of label noise in \(U\):
+\textit{Bagging SVM} algorithm by ~\cite{journals/prl/MordeletV14}, which consists of aggregating SVM trained on random resamples of \(U\) to discriminate \(P\). 
 
-\textit{Bagging SVM} algorithm by ~\cite{journals/prl/MordeletV14}, which consist of aggregating SVM trained on random resamples of \(U\) to discriminate \(P\). 
+\textit{Class-weighted SVM (CWSVM)} is a classification technique where the penality parameter for misclassifications \(C\) differs from class to class \cite{conf/icdm/LiuDLLY03}. Applied to a PU Learning problem the misclassification of positive examples is penalized more than the misclassification of unlabeled examples to emphasize the higher degree of certainty on positive labels \cite{Claesen:2014}.
 
-\textit{Class-weighted SVM (CWSVM)} is a classification technique where the penality parameter for misclassifications \(C\) differs per class \cite{conf/icdm/LiuDLLY03}. Applied on a PU Learning problem the misclassification of positive examples is penalized more that over unlabeled examples to emphasize the higher degree of certainty on positive labels \cite{Claesen:2014}.
+Additionally to that, the RESVM introduces the concept of resampling both \(P\) and \(U\), compared to the Bagging SVM where only \(U\) is resampled. Resampled sets will have a different amount of label noise without increasing the bias. Training based on randomly resampled sets decreases the variance and thus increases the classification accuracy \cite{journals/ml/Breiman00}.
 
-Additionally to that, the RESVM approach introduces the concept of resampling both \(P\) and \(U\) against the Bagging SVM approach where only \(U\) is resampled. Resampled sets will have a different amount of label noise without increasing the bias. Training based on randomly resampled sets decrease the variance and thus increase the classification accuracy \cite{journals/ml/Breiman00}.
+As our implementation of the PUL algorithm is also based on class weighted penalties, CWSVM is in fact identical to a single PUL algorithm.
 
-Bellow, the algorithm of RESVM is given \ref{alg:RESVM}.
+Below the algorithm of RESVM is given \ref{alg:RESVM}.
 
 \begin{algorithm}[h!]                      
 \caption{RESVM} 
 \label{alg:RESVM}
 \begin{algorithmic}[0]
         \State $ n_{models}  $ \Comment{Number of base models (SVM) in the ensemble.}
-         \State $ n_{unl}  $ \Comment{Size of resaple of \(U\) .}
-        \State $ n_{pos}  $  \Comment{Size of resaple of \(P\) .}
+         \State $ n_{unl}  $ \Comment{Size of resample of \(U\) .}
+        \State $ n_{pos}  $  \Comment{Size of resample of \(P\) .}
         \State $ k(.)  $  \Comment{Kernel function to be used by SVM.}
         
 \end{algorithmic}
@@ -164,17 +164,15 @@ Bellow, the algorithm of RESVM is given \ref{alg:RESVM}.
        \State $\Omega    \gets \emptyset$  \Comment{Output with \(n_{models}\) base models.}
         % \State $ C_p \gets C_U \times w_{pos} \times \frac{n_{unl}}{n_{pos}} $  \Comment{Kernel function to be used by SVM.}
         \For{i:=1}{ $n_{models}$ }
-            \State $P^i \gets sample(P,n_{pos}) $ \Comment{Sample \(n_{pos}\) instances from \(P\).}
-            \State $U^i \gets sample(U,n_{unl}) $ \Comment{Sample \(n_{unl}\) instances from \(U\).}
-            \State $ D^i \gets  P^i \cup U^i$ \Comment{ Join the samples for the sake of training \(P\) vs \(U\).}
-            \State $\psi^i \gets train(D^i,k) $ \Comment{Train CWSVM for  \(P\) vs \(U\), with kernel \(k\).}
-            \State $\Omega \gets \Omega \cup \psi^i $ \Comment{Add trained model to the result.}
+            \State $P^i \gets sample(P,n_{pos}) $ \Comment{Sample \(n_{pos}\) instances with replacement from \(P\).}
+            \State $U^i \gets sample(U,n_{unl}) $ \Comment{Sample \(n_{unl}\) instances with replacement from \(U\).}
+            \State $ D^i \gets  P^i \cup U^i$ \Comment{Combine two sets of instances to form a training set.}
+            \State $\psi^i \gets train(D^i,k) $ \Comment{Train CWSVM to discriminate \(P\) vs \(U\), with kernel \(k\).}
+            \State $\Omega \gets \Omega \cup \psi^i $ \Comment{Add a trained model to the output.}
         \EndFor{\textbf{end for}}
    \end{algorithmic}
 \end{algorithm}
 
-In each iteration, a random sample of \(P\) and \(U\) is drawn separately. Then both samples are joined together to be trained by a Class-weighted SVM (\(P\) vs \(U\)). The final prediction result is defined by a majority voting (e.g the trained base models vote if an example is either positive or unlabeled). By a unanimous voting result, a random decision will be taken. 
-
-RESVM offers an ensemble approach to improving classification accuracy with bagging which is a common technique to improve classifier performance and already showed good results on tasks treating PU Learning problems \cite{journals/prl/MordeletV14,journals/ml/Breiman00,breiman:ml96}. Moreover, drawing resamples from both \(P\) and \(U\) separately seems to be a valuable approach to deal with label noise in the particular sets \cite{Claesen:2014}.
+In each iteration, a random sample of \(P\) and \(U\) is drawn (with replacement) separately. Then both samples are combined to form a training set for a Class-Weighted SVM (\(P\) vs \(U\)). Once all ensemble members have been trained, the final prediction is defined by a majority voting. In case of a tie, a random decision is made.
 
 

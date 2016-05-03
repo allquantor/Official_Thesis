@@ -1,12 +1,134 @@
 \chapter{Conclusion}\label{Chapter:7}
 
-Anomalies about persons who get the loan and immediately  pay it back could not be found or it was not enough time to care about it 
+In this thesis, several known and new machine learning methods were investigated for anomaly (fraud) detection in credit application data.
 
-Active Learning (ref to the Outlier Detection Book)
+A micro-credit company is issuing instant loans online by using an automatic credit-scoring algorithm. Fraudsters often attempt to cheat the credit-scoring algorithm with the ultimate
+the result of obtaining a loan. Apart from a financial loss, a successful fraud attempt provokes further fraud attempts and jeopardizes the loan issuance to trustworthy borrowers due to tighten security, leading to longer application processing times. Thus, a predictive model for automatic fraud detection has paramount importance for business.
 
-Parameter Tuning optimization, automatically optimization like hill climbing.
+The theoretical literature related to the topic of anomaly/fraud detection primarily covers fields like intrusion detection in networks or credit card fraud among others. However, at this point of time, works related to credit application fraud could not be found. This is not surprising since instant online issuing of micro-loans is a new business area and is not yet under focus of academic research. 
+
+Although previous documented research in this field could not be found, a literature survey on similar topics related to anomaly detection provided a good enough foundation to build this dissertation. In this work, I sought answers to the following questions: 
+
+\begin{itemize}
+        \item Which machine learning algorithms to use in order to detect fraud when fraudulent data is rare or unavailable, how they perform and can they contribute to financial success in a micro-lending business?
+    
+        \item How to utilize and modify different types of complex credit application data to fit these algorithms?
+        
+        \item What is the optimal treatment of challenges and obstacles occurring throughout the entire process?
+        
+\end{itemize}
+
+The conclusion Chapter first provides a synthesis of the empirical findings discovered during the study in Section~\ref{ch:ef}. Then, research implications of the empirical findings are outlined in Section~\ref{ch:ti} to provide additional application knowledge to the already existing on the particular subject. The policy implications in Section~\ref{ch:pi} pronounces the relevance of the study with respect to the theoretical framework of fraud detection. Finally, recommendation for future research~\ref{ch:rec} and limitations~\ref{ch:lim} of the study are provided.
+
+
+\section{Empirical Findings} \label{ch:ef}
+The empirical findings are chapter specific and discussed in Chapters~(\ref{ch:2}, \ref{Chapter:5}, \ref{Chapter:6}). In this section some empirical findings are synthesized to answer questions asked by this thesis and questions occurred during the work on it:
+
+\begin{itemize}
+    
+    \item (1.) \textit{Is it possible to identify fraud cases by using machine learning methods applied in this work?}
+    \begin{itemize}     
+    
+        \item \textbf{a.} The experimental results in Chapter~\ref{Chapter:5} show that the PUL ensemble is able to identify fraud with the high degree of accuracy at zero false negative rate, i.e., without classifying good customers as fraudsters. 
+        
+        \item \textbf{b.} The data preprocessing pipeline modeled in this work was a significant contributor to the success of the predictive models implemented in this work. Although only the \textit{one-class SVM} was tested on data without preprocessing, an accuracy loss can also be assumed in the other models, since the one-class SVM was the baseline model with the most inaccurate results. Out of all preprocessing techniques, PCA seems to harm rather than help: As PCA is a linear dimensionality reduction technique while our classification problem is likely highly nonlinear, this might explain of a PCA failure. 
+        
+        \item \textbf{c.} \textit{PUL Ensemble} showed the best classification results. This is a strong argument for the hypothesis that positive data can be contaminated with label noise/mislabeled instances and ensembles are the right methods to deal with such noise.
+        
+        \item \textbf{d.} The problem of rare fraud cases could be successfully managed by utilizing algorithms based on \textit{positive} and \textit{unlabeled} learning that don't require fraud instances in training/validation data.
+        
+    \end{itemize}
+    
+    \item (2.) \textit{Can the implemented model contribute to the financial success of a micro-lending company?}
+    \begin{itemize}     
+        \item \textbf{a.} Analysis made in Chapter~\ref{Chapter:6} showed that a fraud classifier can drastically reduce the cost incurred by fraud.
+    \end{itemize}
+
+    
+    \item (3.) \textit{Was all the given data important for the question of fraud detection?}
+        \begin{itemize}        
+            \item \textbf{b.} Removing features with zero and near zero variance during the prepossessing had positive impact on model accuracy.
+        \end{itemize}
+
+
+    \item (4.) \textit{Which obstacles complicated successful fraud detection?}
+        \begin{itemize}        
+            \item \textbf{a.} A significant amount (\(\geq 50\%\)) of missing values is the main factor to blame. Skipping all instances where missing values are present would mean to lose a major part of the data, and thus was not considered as an option.
+        \end{itemize}
+        
+        \begin{itemize}        
+            \item \textbf{c.} Acquisition errors were also present and have to be identified prior to modeling.
+        \end{itemize}
+        
+        \begin{itemize}        
+            \item \textbf{d.} A significant number of features had low or zero variance. This is caused by the high amount of missing values.
+        \end{itemize}
+    
+\end{itemize}
+
+\section{Research Implications} \label{ch:ti}
+Although previous works related to credit application fraud for instant loans could not be found, several contributions to the state-of-the-art were made.
+
+Previous studies treating the topic of learning from Positive and Unlabeled data concerned \textit{Remote Sensing data}~\cite{Li:2011}, \textit{Breast Cancer data}, \textit{Forest Cover Type data}, \textit{Vehicle Classification} and \textit{Digit Recognition}~\cite{Claesen:2014}. This study shows the success of the PUL methods also on financial data utilized for fraud detection.
+
+The impact of PCA on financial data for the purpose of anomaly detection by using algorithms based on Positive and Unlabeled data was not discussed in the literature cited in this work. The experiments made during this work (see Chapter~\ref{Chapter:5:Results}) could clearly emphasize the negative impact of PCA on the classifier performance.
+
+\section{Policy Implications}\label{ch:pi}
+    
+This study was made based on a data set from a real-world company specialized in lending of micro-loans online. Since instantly issuing loans online is a relative modern business and considering that financial data is often private (e.g only a few public data sets are available) - previous works on the topic of fraud detection with a similar type of data could not be found for a comparison. Thus, this thesis is one of few open publications in the field and may serve as a guideline for further research and commercial implementations.
+
+\section{Limitation of this Study}\label{ch:lim}
+
+In following some limitations of this work are summarized:
+
+\begin{itemize}  
+
+    \item The statistical and visual summary of data was limited by the high number of features and instances. A deeper analysis by using more advanced techniques was beyond the scope of this thesis.
+    
+    \item Although several missing value imputation techniques exist, only the \textit{median} imputation was used as one of the straightforward options.
+
+    \item The evaluation of predictive models was made on a test set that was significantly smaller than the training or validation sets -- obviously because of the lack of fraud examples.
+    
+    \item \textit{SVM} with the RBF kernel was only tested. Other kernels were not included in the experiments.
+    
+    \item The calculation of the business value of the fraud detection model was done without considering the \textit{Customer life time value} factor.
+\end{itemize}
+
+\section{Recommendation for Future Research}\label{ch:rec}
+
+Based on the results made in this thesis, further work can be of interest.
+
+Regarding the data quality, the work of~\cite{Mohan;Pearl:2014} provides promising approaches to identify the categories of missing data and impute them.
+
+High-dimensional data can be handled by feature selection. This can have several advantages like speeding up computations or be more transparent in explaining classification decisions. Among others, a ranked based approach for feature selection already achieved good results in the topic of anomaly detection~\cite{journals/ahswn/LiZLH13} and could be used for further research. 
+
+The problem of rarity of negative instances can be approached by applying unsupervised methods (e.g Clustering~\cite{conf/ijcnn/AlzateS12}) to identify similarities in the data and therefore identify more negative instances. 
+
+A more consolidated analysis on data acquisition process could be useful to improve the data quality. 
+
+Since the \textit{SVM} is a kernel-based algorithm experimenting with other than RBF kernels could provide more results of \textit{SVM} performance on the given data.
+
+Since the data preprocessing contributed to an essential part of the success in fraud detection, it is worth to repeat the experiments by permuting the preprocessing methods and their parameters (e.g try out different variance thresholds or other missing value imputation techniques).
+
+\section{Last Words}\label{ch:lw}
+
+This thesis gave an introduction to anomaly detection in financial data. In spite of the rarity of fraud cases, a very encouraging result was achieved by utilizing only positive and unlabeled data and a carefully constructed data preprocessing pipeline. 
+
+The author thanks for readers for comments and suggestions.
 
 
 
 
 
+
+
+
+%A lot of missing values 
+%Anomalies about persons who get the loan and immediately  pay it back could not be found or it was not enough time to care about it 
+
+
+
+%Parameter Tuning optimization, automatically optimization like hill climbing.
+
+
+%- answer in conclusion that although the model will evolve over time repeated training with new data and caring about the model could contribute to success and improving

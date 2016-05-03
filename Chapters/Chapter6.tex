@@ -1,5 +1,47 @@
 \chapter{Evaluation of Results: Value for Business}\label{Chapter:6}
+Since the confusion matrices for all predictive models are available (see Chapter~\ref{Chapter:5:Results}), it is possible to analyze the potential monetary impact of a model on the micro-lending business. In this chapter, the value of a model for business is calculated.
+
+Please note that some financial indicators used in calculations below are only approximate but in the range of real figures of a micro-lending company. For business-related reasons, the exact figures cannot be reported in this work.
+
+The business value calculations utilize the following characteristics:
+
+\[\textrm{(Cost of Customer Acquisition (marketing cost))} \; CAC = 0.5  \]
+\[\textrm{(Mean value of the interest rate)}\; r = 10\%  \]
+\[\textrm{(Mean value of a loan taken by a legitimate applicant)}\; C_p = 550  \]
+\[\textrm{(Mean value of a loan taken by a fraudster)}\; C_n = 2100  \]
 
 
-% FAZIIIIIIT!!!!!}
+First, the marketing costs for \textrm{all} negative (fraud) cases are calculated:
+\[ Mcost_N = CAC * |N| \]
+
+Once a malicious person got a loan, the company loses money. This loss is defined as:
+\[ Rcost_N =   C_n * |N| \]
+
+So, the monetary loss in case if a fraud detection model is not deployed can be calculated as follows:
+\[ Loss' =  Rcost_N  +   Mcost_N  \]
+\[ Loss' =  (2100 * 743) + (0.5 * 743) \]
+\[ Loss' =  1560671.5\]
+
+The next step is to determine the possible impact of our best fraud detection model (PUL Ensemble without PCA and with custom voting) on the calculated costs. 
+
+The possible loss during the wrong classification of trustworthy applicants as fraudsters (missed profit here is the interest on loans) is calculated with the number of false positives:
+
+\[ FNcost = r * |FN| * C_p = 0\]
+
+because \[|FN| = 0.\]
+
+Finally the gain caused by the correct classification of fraud attempts is given by:
+
+\[Gain = C_n * |TN| = 2100 * 542 = 1138200\]
+
+The losses incurred due to wrongly issued loans to fraudsters and the marketing costs are \[2100 * 201 + 0.5 * 201 = 422200.5\]. Coupled with FNcost, the total loss amounts to 422200.5.
+
+Thus as gains largely exceed losses when the PUL ensemble is applied, this justifies the business value of the proposed model for a given test data.
+
+The calculations in this chapter are only preliminary and should be considered as a starting point. In the future, other business related factors, such as Customer Lifetime Value (CLF), need to be taken into account.
+
+
+
+
+
 
