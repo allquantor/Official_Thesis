@@ -17,7 +17,7 @@ Regardless of a classifier, there are four types of a prediction outcome, coveri
     \item \textbf{False Negative (FN):}  If an instance is positive and it was classified as negative.
 \end{itemize}
 
-It is common practice to construct a \textit{confusion matrix} (see Figure~\ref{fig:confusion-matrix}) to combine these four characteristics. Along the main diagonal correct decisions are given where the errors (confusion) are represented along the minor diagonal of the matrix (see Figure~\ref{fig:confusion-matrix}.
+It is common practice to construct a \textit{confusion matrix} (see Figure~\ref{fig:confusion-matrix}) to combine these four characteristics. Along the main diagonal correct decisions are given where the errors (confusion) are represented along the minor diagonal of the matrix (see Figure~\ref{fig:confusion-matrix}).
 
 \begin{figure}[h!]
     \centering
@@ -32,28 +32,25 @@ Based on the above given types of predictions, additional measures can be calcul
 \[ \textrm{True Positive Rate (TP-Rate)} = \frac{TP}{P}, \textrm{where } P \textrm{ stands for positives.}  \]
 
 
-A discrete classifier have by definition a class label as output instead of probability (e.g \(Y\)/\(N\) for binary classification) \cite{Fawcett:2006:IRA:1159473.1159475}. The results can be easily  represented on a basic ROC-Graph (see figure\footnote{Figure is taken from the work of \cite{Fawcett:2006:IRA:1159473.1159475}}~\ref{fig:roc-graph}), where the \(x\) - axis is the FP-Rate and \(y\) is the TP-Rate. The best classifier/point on the graph is the one with the highest true positive and the lowest false positive rate (point \(D\) in Figure~\ref{fig:roc-graph}).
-
+A discrete classifier have by definition a class label as output instead of probability (e.g \(Y\)/\(N\) for binary classification) \cite{Fawcett:2006:IRA:1159473.1159475}. The results can be easily  represented on a basic ROC-Graph (see Figure~\ref{fig:roc-graph}), where the \(x\) - axis is the FP-Rate and \(y\) is the TP-Rate. The best classifier/point on the graph is the one with the highest true positive and the lowest false positive rate (point \(D\) in Figure~\ref{fig:roc-graph}).
 \begin{figure}
 \centering
 \begin{minipage}{.5\textwidth}
   \centering
   \includegraphics[scale=0.47]{Graphics/roc-graph.png}
-  \captionof{figure}{ROC-Graph for a discrete classifier.}
+  \captionof{figure}{ROC-Graph for a discrete classifier. From: \textit{Figure is taken from the work of~\cite{Fawcett:2006:IRA:1159473.1159475}}}
   \label{fig:roc-graph}
 \end{minipage}%
 \begin{minipage}{.5\textwidth}
   \centering
     \includegraphics[scale=0.57]{Graphics/roc-curve.png}
-  \captionof{figure}{ROC-Curve for a probabilistic classifier.}
+  \captionof{figure}{ROC-Curve for a probabilistic classifier. From: \textit{Figure is taken from the work of~\cite{Fawcett:2006:IRA:1159473.1159475}}}
   \label{fig:roc-curve}
 \end{minipage}
 \end{figure}
+An also interesting observation is the \(C\), located on the diagonal dotted line, where the FP and TP rates are equal for any pair of rates. The dotted line corresponds to a random classifier, which implies that for any classifier to be better than random, its point related to the ROC-Graph should be located above the dotted line.
 
-
-An interesting point is the point \(C\) located on the diagonal dotted line, where the FP and TP rates are equal for any pair of rates. The dotted line corresponds to a random classifier, which implies that for any classifier to be better than random, its point related to the ROC-Graph should be located above the dotted line.
-
-Some classifiers yields numeric (real) values as an output. These values are either strict probabilities or they can be uncalibrated scores that may be turned into probability. These values can be converted into binary labels by using a threshold, e.g., if the value is above the threshold then the label is \(Y\) else \(N\). So, each threshold would produce a different point in ROC space, and connecting the points together produces the ROC-Curve (see Figure\footnote{Figure is taken from the work of \cite{Fawcett:2006:IRA:1159473.1159475}}:\ref{fig:roc-curve}). 
+Some classifiers yields numeric (real) values as an output. These values are either strict probabilities or they can be uncalibrated scores that may be turned into probability. These values can be converted into binary labels by using a threshold, e.g., if the value is above the threshold then the label is \(Y\) else \(N\). So, each threshold would produce a different point in ROC space, and connecting the points together produces the ROC-Curve (see Figure~\ref{fig:roc-curve}). 
 
 ROC analysis is thus a useful tool for measuring classifier performance. Whenever a discrete classifier is used yielding crisp labels, a confusion matrix provides an additional view on classifier performance that complements a ROC-Graph. With a classifier capable of calculating the probabilities, a ROC-Curve is a natural choice for performance evalution. For imbalanced data sets like the one used in this thesis, the ROC analysis results in unbiased performance evaluation that is not influenced (dominated) by a majority class, in contrast to such measures as classification accuracy  \cite{Fawcett:2006:IRA:1159473.1159475}.
 

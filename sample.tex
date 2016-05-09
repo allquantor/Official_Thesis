@@ -22,9 +22,10 @@
 \usepackage{natbib}
 \usepackage[ngerman,colorlinks=true]{hyperref}
 \usepackage{soul}
-\usepackage{hawstyle}
+\usepackage[printer]{hawstyle}
 \usepackage{lipsum} %% for sample text
 \usepackage{epigraph} %% for quotes
+
 
 
 % custom
@@ -125,7 +126,7 @@
                     ,ExaminationType={Masterprüfung}
                     ,DegreeProgramme={Master of Science Angewandte Informatik}
                     ,ThesisExperts={Prof. Dr. Kai von Luck \and Prof. Dr. Klaus-Peter Schoeneberg}
-                    ,ReleaseDate={1. Januar 2345}
+                    ,ReleaseDate={9. Mai 2016}
                   }
 
 %% title
@@ -151,7 +152,17 @@
     Verhaltensdaten
 }
 { 
-    ICH BIN DEUTSCHER ABSTRACT
+ Die vergabe von Sofort-Krediten online ist eine moderne Business-Lösung. Ein Algorithmus basierend auf der Theorie vom maschinellen lernen entscheidet, ob ein Kredit vergeben wird oder nicht. Es ist nicht unüblich, dass Personen mit betrügerischen Absichten versuchen, das System zu umgehen - mit dem Ziel, einen Kredit zu bekommen. Diese Arbeit hat das Ziel, Methoden des maschinellen Lernens zu nutzen, um mögliche Betrugsfälle prognostizieren zu können. Die dafür verwendeten Daten werden während des Kreditantragsverfahrens gesammelt. 
+
+Betrugs- bzw. anomale Fälle sind selten, so verwenden die Methoden in dieser Arbeit nur \textit{positive} (Kunden die Kredite zurückzahlen) und \textit{unmarkierte} (Kunden mit einem unbekannten Status der Rückzahlung) Daten um Betrugsfälle zu identifizieren. 
+
+Eine Analyse der zugrunde liegenden Daten wurde durchführt und diverse Merkmale und Probleme wie z. B. die hohe Anzahl von fehlenden Daten wird diskutiert.
+
+Drei Maschinen-Lern-Algorithmen werden vorgestellt. Die \textit{one-class SVM} verwendet nur positive Instanzen im Gegensatz zu \textit{Positive and Unlabeled Learning (PUL)} und \textit{PUL Ensemble}, wo beide - sowohl positive als auch unmarkierte - Daten verwendet werden.
+
+Ein Experiment unter der Verwendung von Vorverarbeitungsoperationen und der diskutierten Algorithmen wurde durchgeführt. Dieser zeigte eine viel versprechende Betrugserkennungsrate bei der Verwendung von one-class SVM auf Kosten einer großen Anzahl von vertrauenswürdigen Bewerbern, die als Betrüger klassifiziert wurden. PUL verringerte die Anzahl der falsch vorhergesagten Rückzahler, während ein PUL Ensemble alle vertrauenswürdigen Bewerber richtig klassifizierte und die Betrugserkennungsrate auf etwa \(73 \% \) brachte. Zusätzlich wurde ein positiver Effekt der Vorverarbeitung von Daten und eine negative Auswirkung der Hauptkomponentenanalyse entdeckt. Schließlich wurde der mögliche Effekt von PUL-Ensemble als ein Teil des Kredit-Scoring-Systems berechnet.
+
+Die Arbeit kommt zu dem Schluss, dass eine erfolgreiche Betrugserkennung auch ohne die Verwendung bereits dokumentierter Betrugsfälle möglich ist.
 }
 {
     Machine Learning, 

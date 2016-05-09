@@ -17,14 +17,12 @@ An experiment is defined as an process that follows the general experimental pat
 
 \subsection{Dataset Description}
 
-The initial data set has \(95951\) instances with \(1804\) features per instance. Each instance represents a single credit-application (a detailed overview of underlying data can be found in Chapter~\ref{Ch:2:FeatureDesc}). 
+The initial data set has \(95.951\) instances with \(1.804\) features per instance. Each instance represents a single credit-application (a detailed overview of underlying data can be found in Chapter~\ref{Ch:2:FeatureDesc}). 
 
-The data is divided into \textit{Training/Validation/Test} sets in the proportion \((\approx60\%/\approx30\%/\approx10\%)\). All instances that are labeled as \textit{Fraud}~\((743)\) are assigned to the test set since the predictive algorithms expects \textit{Positive} and \textit{Unlabeled} data only. Thus, fraud instances are not a part of training/validation sets.
+The data is divided into \textit{Training/Validation/Test} sets in the proportion\footnote{A common suggested size for the training set is $60\%-80\%$~\cite{UBHD65918158}.} \((\approx60\%/\approx30\%/\approx10\%)\). All instances that are labeled as \textit{Fraud}~\((743)\) are assigned to the test set since the predictive algorithms expects \textit{Positive} and \textit{Unlabeled} data only. Thus, fraud instances are not a part of training/validation sets.
 
 \begin{table}[ht!]
-\label{tab:data-pred-methods} 
 \centering
-\caption{Operations included into data preprocessing.}
  \begin{tabular}{|l|l|}\hline
   Operation&Reference\\ \hline
  Removing Corrupted Instances  & \ref{Ch:2:RCD} \\ \hline
@@ -32,22 +30,17 @@ The data is divided into \textit{Training/Validation/Test} sets in the proportio
      \hline 
       Missing Value Imputation & \ref{Ch:2:MVI} \\
      \hline 
-     
      Removing Zero- and Near-Zero Variance Features  & \ref{Ch:2:RNZVF} \\
      \hline 
-
      Principle Component Analysis (PCA) & \ref{Ch:2:PCA} \\
      \hline 
         \end{tabular}
+\caption{Operations included into data preprocessing.}
+\label{tab:data-pred-methods} 
 \end{table}
 
-
-
-
 \begin{table}[ht!]
-\label{tab:machine-learn-tech} 
 \centering
-\caption{Machine learning methods used in experiments.}
  \begin{tabular}{|l|l|}\hline
          Method & Reference\\
         \hline
@@ -60,13 +53,12 @@ The data is divided into \textit{Training/Validation/Test} sets in the proportio
         PUL Ensemble &  \ref{Chapter:Ensemble} \\
         \hline
     \end{tabular}
- 
+ \caption{Machine learning methods used in experiments.}
+\label{tab:machine-learn-tech} 
 \end{table}
 
 \begin{table}[ht!]
-\label{tab:res-ev}
     \centering
-    \caption{Performance evaluation techniques used in experiments.}
         \begin{tabular}{|c|c|}
         \hline
         Technique&Reference\\
@@ -74,13 +66,15 @@ The data is divided into \textit{Training/Validation/Test} sets in the proportio
         ROC analysis & \ref{Chapter:4:ROC} \\
         \hline
         \end{tabular}
+        \caption{Performance evaluation techniques used in experiments.}
+    \label{tab:res-ev}
 \end{table}
 
 
 
-\subsection{Preprocessing Settings}
+\subsection{Preprocessing Settings}\label{ch:prepro:setting}
 
-Below the configuration settings for the preprocessing operations (see Table~\ref{tab:data-pred-methods}) are given:
+Below the configuration settings for (all) the preprocessing operations (see Table~\ref{tab:data-pred-methods}) used in the experiment are given:
 
 \begin{itemize}
     \item Corrupted instances will be completely excluded from the data set.
@@ -95,23 +89,23 @@ Below the configuration settings for the preprocessing operations (see Table~\re
     
 \end{itemize}
 
-All machine learning methods are trained \textbf{with} and \textbf{without} PCA. Since the PCA analysis is configured to capture \(95\%\) of the total variance in data, the impact of the other \(5\%\) on the prediction model is an interesting case to observe.
+All machine learning methods are trained \textbf{with} and \textbf{without} PCA. Since the PCA analysis is configured to capture \(95\%\) of the total variance in data (see the configuration in section~\ref{ch:prepro:setting}), the impact of the other \(5\%\) on the prediction model is an interesting case to observe.
 
 To outline the impact of the data preprocessing - an additional experiment is performed. It includes the training of the \textit{one-class SVM} on the data when all but the categorical-to-numeric conversion was omitted.
 
-\subsection{Modelling Settings}
+\subsection{Modelling Settings}\label{ch:modelling-settings}
 
 There are three different models (one-class SVM, PUL and PUL Ensemble; two-class SVM is a part of the last two models).
 
-All classification tasks use the \textit{stratified ten-fold cross-validation} carried out on the training data to find the optimal values of model parameters. The training data is randomly divided in \(k\) chunks (folds) while preserving the original class ratio in each chunk as much as possible. A classifier is then trained \(k\) times: One chunk is used for the validation and the remaining \(k-1\) are used for  training~\cite{Kohavi95}.
+All classification tasks use the \textit{stratified ten-fold cross-validation} carried out on the training data to find the optimal values of model parameters. The training data is randomly divided into \(k\) chunks (folds) while preserving the original class ratio in each chunk as much as possible. A classifier is then trained \(k\) times: One chunk is used for the validation and the remaining \(k-1\) are used for  training~\cite{Kohavi95}.
 
 For SVMs regardless of their type, the Radial Basis Function (RBF) kernel was chosen, which implies two parameters: \(\sigma\) - kernel width and \(C\) - penalty cost.
 
-As our data is class-imbalanced, the class-weighted version of the SVM was used, which an extra parameter - class weight.
+As our data is class-imbalanced (see in Chapter~\ref{Ch:2:SSummary} the Table~\ref{tab:instance-summary} for the label distribution), the class-weighted version of the SVM was used, which an extra parameter - class weight.
 
-During the cross-validation, the optimal value of the kernel width was first determined prior to the start of cross-validation. After that, the optimal values of the penalty cost and the class weight are determined by going through every possible combination of these two parameters. The possible values for the penalty cost are 0.25 and 0.5, whereas the possible values for the class weight are 1 and 2. Thus, there are only four combinations to test. A small number of combinations is caused by the high computational cost of the cross-validation and SVM training.
+During the cross-validation, the optimal value of the kernel width was first determined prior to the start of cross-validation. After that, the optimal values of the penalty cost and the class weight are determined by going through every possible combination of these two parameters. The possible values for the penalty cost are ($0.25,0.5,1.0,2.0$), whereas the possible values for the class weight are ($1.0,2.0,3.0,4.0$). Thus, there are $16$ combinations to test\footnote{The possible values are automatically provided by the R library \textit{Caret}~\cite{JSSv028i05}, used to compute the models in this Thesis.}. A small number of combinations is caused by the high computational cost of the cross-validation and SVM training.
 
-When creating a PUL ensemble, 10 PUL classifiers were used, each trained on \(\approx11514\) positive and \(\approx5757\) unlabeled instances, sampled from the original dataset.
+When creating a PUL ensemble, 10 PUL classifiers were used, each trained on \(11.514\) positive and \(5.757\) unlabeled instances, sampled from the original dataset.
 
 Two types of voting are used for combining predictions of individual classifiers:
 
@@ -125,8 +119,8 @@ Two types of voting are used for combining predictions of individual classifiers
 \subsection{Preprocessing Results}
 The effect of preprocessing on the number of features and the number of instances is analyzed below.
 
-\paragraph*{Impact on features} \hfill \break
-Figure~\ref{fig:features-preprocessing} shows the change in the number of features after each preprocessing operation. The preprocessing reduced the number of features from \(1804\) to \(271\), this corresponds reduction by \(\approx85\%\). 
+\paragraph*{Impact on Features} \hfill \break
+Figure~\ref{fig:features-preprocessing} shows the change in the number of features after each preprocessing operation. The preprocessing reduced the number of features from \(1.804\) to \(271\), this corresponds reduction by \(\approx85\%\). 
 
 \begin{figure}[h!]
     \centering
@@ -135,7 +129,7 @@ Figure~\ref{fig:features-preprocessing} shows the change in the number of featur
     \label{fig:features-preprocessing}
 \end{figure}
 
-Table~\ref{tab:feature-reduction} present a detailed description of preprocessing operations at Figure~\ref{fig:features-preprocessing} and their impact on the amount of features remaining after the particular operation was applied.
+Table~\ref{tab:feature-reduction} present a detailed description of preprocessing operations visualized at Figure~\ref{fig:features-preprocessing} and their impact on the amount of features after the particular operation was applied.
 \begin{table}[h!]
   \begin{center} 
     \caption{The preprocessing impact on the amount of Features.}
@@ -143,7 +137,7 @@ Table~\ref{tab:feature-reduction} present a detailed description of preprocessin
    \hspace*{-1cm} \begin{tabular}{|l|c|c|}\hline
     \textit{Number} & \textit{Operation} & \textit{Features left} \\
       \hline
-     (1.) & Start & \(1807\) \\ 
+     (1.) & Start & \(1.807\) \\ 
      \hline
      (2.) & Removing Zero- and Near-Zero Variance from Numerical Features  &  \(687\) \\
      \hline
@@ -161,20 +155,17 @@ Table~\ref{tab:feature-reduction} present a detailed description of preprocessin
   \end{center}
 \end{table}
 
-\paragraph*{Impact on instances and their values} \hfill \break
-Removing of instances contaminated by data acquisition errors reduced the sample size by \(\approx1\%\) to \(95.829\) instances.
-
-There were a lot missing values in the data: about $40\%$ of all numeric values and about $53\%$ of all categorical and logical values were imputed.
+\paragraph*{Impact on Instances and their Values} \hfill \break
+Removing of instances contaminated by data acquisition errors reduced the sample size by \(\approx1\%\) to \(95.829\) instances. There were a lot of missing values in the data: $\approx40\%$ of all numeric values and about $\approx53\%$ of all categorical and logical values were imputed.
 
 \subsection{Modelling / Machine Learning Results}
 The test set comprises \(2229\) instances. As SVMs do not naturally return probabilities as an output, the confusion matrices are reported instead.
 
 \paragraph*{One-Class SVM} \hfill \break
-The test results are shown below. The positive impact of preprocessing is clearly seen as without it results are greatly inferior to those with it. However, it is hard to judge on the effect of PCA: with PCA the number of detected fraud cases is almost twice higher than when PCA is not performed; however, this is done at the expense of the correctly predicted positive cases.
-
+The test results are shown below (see Figure~\ref{tables:confusion-matrices-oneclass}). The positive impact of preprocessing is clearly seen as without it results are greatly inferior to those with it. However, it is hard to judge on the effect of PCA: with PCA the number of detected fraud cases is almost twice higher than when PCA is not performed; however, this is done at the expense of the correctly predicted positive cases.
+\begin{figure}[ht!]
 \begin{multicols}{3}
 \hspace*{-2cm}
-\label{tables:confusion-matrices-oneclass}
 \begin{tikzpicture}[
 box/.style={draw,rectangle,minimum size=1cm,text width=0.75cm,align=left}]
 \matrix (conmat) [row sep=.1cm,column sep=.1cm] {
@@ -255,14 +246,17 @@ box/.style={draw,rectangle,minimum size=1cm,text width=0.75cm,align=left}]
 \node [above=.05cm of conmat] {\textbf{actual value}};
 \end{tikzpicture}
 \end{multicols}
+    \caption{Confusion Matrices visualizing the Performance of the one-class SVM.}
+    \label{tables:confusion-matrices-oneclass}
+\end{figure}
 
 
 \paragraph*{PUL} \hfill \break
-In case of PUL, PCA harmed performance as can be seen below for both positive and negative cases. The number of correctly predicted fraud cases was significantly higher without PCA. 
+In the case of PUL, PCA harmed performance as can be seen in Figure~\ref{tables:confusion-matrices-pul} for both positive and negative cases. The number of correctly predicted fraud cases was significantly higher without PCA. 
 
+\begin{figure}[ht!]
 \begin{multicols}{2}
 %\hspace*{-1cm}
-\label{tables:confusion-matrices-pul}
 \begin{tikzpicture}[
 box/.style={draw,rectangle,minimum size=1cm,text width=0.75cm,align=left}]
 \matrix (conmat) [row sep=.1cm,column sep=.1cm] {
@@ -320,13 +314,15 @@ box/.style={draw,rectangle,minimum size=1cm,text width=0.75cm,align=right}]
 \node [above=.05cm of conmat] {\textbf{actual value}};
 \end{tikzpicture}
 \end{multicols}
+\caption{Confusion Matrices visualizing the Performance of the PUL.}
+    \label{tables:confusion-matrices-pul}
+\end{figure}
 
 \paragraph*{PUL Ensemble} \hfill \break
-Among ensembles, a clear winner is the ensemble without PCA preprocessing and with custom voting - This is the best result in this thesis! The custom voting means than fewer than majority votes are sufficient in order to classify an instances as fraud. Introducing this type of voting led to increase of the fraud detection by approximately \(\approx27\%\), compared to the majority voting scheme, while the true positive rate remained the same in both cases.
-
+The detailed results among ensembles are provided in Figure~\ref{tables:confusion-matrices-ensemble}, the highest accuracy was achieved by the ensemble without PCA preprocessing and with custom voting (custom voting is been introduced in section~\ref{ch:modelling-settings}) - This is the highest accuracy in this thesis!
+\begin{figure}[ht!]
 \begin{multicols}{3}
 \hspace*{-2cm}
-\label{tables:confusion-matrices-ensemble}
 \begin{tikzpicture}[
 box/.style={draw,rectangle,minimum size=1cm,text width=0.75cm,align=left}]
 \matrix (conmat) [row sep=.1cm,column sep=.1cm] {
@@ -412,9 +408,13 @@ box/.style={draw,rectangle,minimum size=1cm,text width=0.75cm,align=right}]
 \node [above=.05cm of conmat] {\textbf{actual value}};
 \end{tikzpicture}
 \end{multicols}
+\caption{Confusion Matrices visualizing the Performance of the PUL Ensemble.}
+\label{tables:confusion-matrices-ensemble}
+\end{figure}
+The custom voting led to increase of the fraud detection by approximately \(\approx27\%\), compared to the majority voting scheme, while the true positive rate remained the same in both cases.
 
 \paragraph*{Model Parameters} \hfill \break
-The results in the previous sections were obtained with the optimal parameters given in Tables~\ref{tab:params-oc} and \ref{tab:params-twoc}. These are parameters for models without PCA. We don't report the same data for models with PCA as results for them are inferior to those without PCA.
+The results in the previous sections were obtained with the optimal parameters given in Tables~\ref{tab:params-twoc} and~\ref{tab:params-oc}. These are parameters for models without PCA. The same data for models with PCA is not reported as results for them are inferior to those without PCA.
 
 \begin{table}[ht!]
   \begin{center}
@@ -433,7 +433,7 @@ The results in the previous sections were obtained with the optimal parameters g
   \end{center}
 \end{table}
 
-\begin{table}[h!]
+\begin{table}[ht!]
   \begin{center}
     \caption{One-Class SVM - optimal parameters.}
     \label{tab:params-oc}
@@ -450,16 +450,16 @@ The results in the previous sections were obtained with the optimal parameters g
 
 
 \paragraph*{ROC Graph} \hfill \break
-Although we mentioned in Chapter~\ref{Chapter:4} that for discrete (crisp) classifiers, a ROC curve is reduced to a point in the FP-TP space, Figure~\ref{fig:classifier-comparison} shows a ROC graph for all models. In this figure, the FP rate on x-axis is replaced with the TN rate for better visualization.
+Although we mentioned in Chapter~\ref{Chapter:4} that for discrete (crisp) classifiers, an ROC curve is reduced to a point in the FP-TP space, Figure~\ref{fig:classifier-comparison} shows an ROC graph for all models. In this figure, the FP rate on the x-axis is replaced with the TN rate for better visualization.
+\begin{figure}[ht!]\vspace*{-5cm}
 
-Again it can be seen that the PUL ensembles were much superior to single algorithms. Except for PCA, all other preprocessing steps enhanced classification performance (preprocessing was particularly needed for the one-class SVM which performance was worse than a random guess without it). Therefore it is not surprising that the PUL ensemble without PCA preprocessing is also a winner in this ROC graph, yielding the highest TP and TN rates, which confirms conclusions made from the analysis of the confusion matrices.
-
-\begin{figure}[ht!]
     \centering 
-    \includegraphics[scale=0.5]{Graphics/classifier-performance.png}
-    \caption{A ROC-Graph visualizing the accuracy of the models involved in the experiment.}
+    \includegraphics[scale=0.65]{Graphics/classifier-performance.png}
+    \caption{An ROC-Graph visualizing the accuracy of the models involved in the experiment.}
     \label{fig:classifier-comparison}
 \end{figure}
+Again it can be seen that the PUL ensembles were much superior to single algorithms. Except for PCA, all other preprocessing steps enhanced classification performance. Besides it can be seen that the one-class SVM without preprocessing  performance was worse than a random guess without it (see Chapter~\ref{Chapter:4:ROC} for the description how to identify a random classifier by using an ROC Graph). Therefore, it is not surprising that the PUL ensemble without PCA preprocessing is also a winner in this ROC graph, yielding the highest TP and TN rates, which confirms conclusions made from the analysis of the confusion matrices.
+
 
 
 
